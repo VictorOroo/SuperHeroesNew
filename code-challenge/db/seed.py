@@ -25,3 +25,18 @@ heroes_data = [
     {"name": "Kitty Pryde", "super_name": "Shadowcat"},
     {"name": "Elektra Natchios", "super_name": "Elektra"}
 ]
+
+heroes = [Hero(**data) for data in heroes_data]
+db.session.add_all(heroes)
+db.session.commit()
+
+strengths = ["Strong", "Weak", "Average"]
+for hero in heroes:
+    for _ in range(random.randint(1, 3)):
+        power = random.choice(powers)
+        hero_power = HeroPower(hero=hero, power=power, strength=random.choice(strengths))
+        db.session.add(hero_power)
+
+db.session.commit()
+
+print("🦸‍♀️ Done seeding!")

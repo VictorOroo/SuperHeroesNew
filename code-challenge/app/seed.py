@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from app import app, db
 from models import Hero, Power, HeroPower
 import random
